@@ -21,3 +21,7 @@ def update_conteudo(filtro, data):
 def create_conteudo(data):
     collection_conteudos.insert_one(data)
     return True
+
+def delete_conteudo(filtro):
+    collection_conteudos.delete_one(filtro)
+    return True
