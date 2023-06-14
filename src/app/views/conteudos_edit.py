@@ -35,7 +35,6 @@ def conteudos_edit_page():
                 index=get_subject_names().index(conteudo["subject"]),
             )
             new_description = st.text_input("Descrição", conteudo["description"])
-            choices = st.selectbox("Escolha uma opção", ["Editar", "Deletar"])
 
             new_data = {
                 "content_name": new_name,
@@ -43,8 +42,10 @@ def conteudos_edit_page():
                 "description": new_description,
             }
 
-            if st.form_submit_button(choices):
-                if choices == "Editar":
+            cols = st.columns(2, gap="large")
+
+            with cols[0]:
+                if st.form_submit_button("Editar"):
                     update_conteudo(
                         {
                             "content_name": conteudo["content_name"],
@@ -54,7 +55,8 @@ def conteudos_edit_page():
                     )
                     st.success("Conteúdo editado com sucesso!")
 
-                if choices == "Deletar":
+            with cols[1]:
+                if st.form_submit_button("Deletar"):
                     delete_conteudo(
                         {
                             "content_name": conteudo["content_name"],
