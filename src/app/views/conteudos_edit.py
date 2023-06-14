@@ -55,5 +55,10 @@ def conteudos_edit_page():
                     st.success("Conteúdo editado com sucesso!")
 
                 if choices == "Deletar":
-                    delete_conteudo()
+                    delete_conteudo(
+                        {
+                            "content_name": conteudo["content_name"],
+                            "date": conteudo["date"],
+                        }
+                    )
                     st.success("Conteúdo deletado com sucesso!")
